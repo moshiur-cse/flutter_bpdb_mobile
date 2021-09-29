@@ -1,12 +1,10 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:connectivity/connectivity.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +14,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -30,14 +29,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _form()
-    );
+    return Scaffold(body: _form());
   }
 
   void CheckStatus() {
     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.mobile || result == ConnectivityResult.wifi) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
       } else {
         showAlertDialog(context, "Please Connect Internet");
       }
@@ -45,8 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _form() => Container(
-      child: WebView(initialUrl: "http://202.53.173.185/bpdb_mobile",javascriptMode: JavascriptMode.unrestricted)
-  );
+      child: WebView(
+          initialUrl: "http://202.53.173.185/bpdb",
+          javascriptMode: JavascriptMode.unrestricted));
 
   showAlertDialog(BuildContext context, String message) {
     // set up the button
@@ -74,9 +73,4 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
-
 }
-
-
-
-
